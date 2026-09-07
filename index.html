@@ -160,7 +160,7 @@
 
 <header>
   <div class="info-group">
-    <div><strong>黑板方向（前）</strong></div>
+    <div><strong>公布欄方向（後）</strong></div>
     <div>時間：<span id="clock">連線中...</span></div>
     <div>課程：<span id="currentCourse" class="badge">判定中...</span></div>
     <button class="btn-override" onclick="toggleTeacherOverride()" id="overrideBtn">🔒 導師補登模式</button>
@@ -194,7 +194,8 @@
     <button class="btn-status" onclick="selectStatus('吵鬧不聽勸阻', this)">吵鬧不聽勸阻</button>
     <button class="btn-status" onclick="selectStatus('上課做別的事', this)">上課做別的事</button>
     <button class="btn-status" onclick="selectStatus('上課不配合', this)">上課不配合</button>
-
+    <button class="btn-status" onclick="selectStatus('未到班', this)">未到班</button>
+    
     <div class="panel-title" style="margin-top: 10px;">操作即時紀錄</div>
     <div class="log-panel" id="actionLog">待命狀態...</div>
   </div>
@@ -362,8 +363,8 @@
   // 教師手動強制解鎖（防學生亂按，給老師下課補登用）
   function toggleTeacherOverride() {
     if (!isTeacherOverride) {
-      const pwd = prompt("請輸入導師解鎖密碼以開啟下課補登模式（預設: 1234）：");
-      if (pwd === "1234") {
+      const pwd = prompt("請輸入導師解鎖密碼以開啟下課補登模式：");
+      if (pwd === "11315") {
         isTeacherOverride = true;
         document.getElementById('overrideBtn').innerText = "🔓 已手動解鎖(點擊關閉)";
         document.getElementById('overrideBtn').style.background = "#bbf7d0";
