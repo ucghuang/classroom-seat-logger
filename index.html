@@ -163,7 +163,6 @@
     <div><strong>公布欄方向（後）</strong></div>
     <div>時間：<span id="clock">連線中...</span></div>
     <div>課程：<span id="currentCourse" class="badge">判定中...</span></div>
-    <button class="btn-override" onclick="toggleTeacherOverride()" id="overrideBtn">🔒 導師補登模式</button>
   </div>
   <div class="info-group">
     <div>鎖定狀態：<span id="selectedStatusText" class="status-badge">未選定（請先選右側）</span></div>
@@ -362,27 +361,7 @@
   }
 
   // 教師手動強制解鎖（防學生亂按，給老師下課補登用）
-  function toggleTeacherOverride() {
-    if (!isTeacherOverride) {
-      const pwd = prompt("請輸入導師解鎖密碼以開啟下課補登模式：");
-      if (pwd === "11315") {
-        isTeacherOverride = true;
-        document.getElementById('overrideBtn').innerText = "🔓 已手動解鎖(點擊關閉)";
-        document.getElementById('overrideBtn').style.background = "#bbf7d0";
-        document.getElementById('seatGridWrapper').classList.remove('is-locked');
-        document.querySelectorAll('.btn-status').forEach(b => b.disabled = false);
-        addLog("導師手動補登模式已開啟。");
-      } else if (pwd !== null) {
-        alert("密碼錯誤！");
-      }
-    } else {
-      isTeacherOverride = false;
-      document.getElementById('overrideBtn').innerText = "🔒 導師補登模式";
-      document.getElementById('overrideBtn').style.background = "#e2e8f0";
-      updateCourseAndTime(); // 恢復時鐘自動判斷
-      addLog("已關閉導師補登模式，恢復鎖定。");
-    }
-  }
+ 
 
   function addLog(msg) {
     const logBox = document.getElementById('actionLog');
